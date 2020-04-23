@@ -1,5 +1,8 @@
 import { SVG } from '@svgdotjs/svg.js';
 
+/**
+ * This class handles all interactions with SVG.js library
+ */
 export default class SvgHandler {
   constructor() {
     this.field = SVG('#svgfield');

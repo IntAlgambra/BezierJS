@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
+    "build:github-pages": "webpack --mode production --output-filename [name].[contenthash].js --output-path ./docs",
     "dev": "webpack --mode development",
     "serve": "webpack-dev-server",
     "lint": "eslint ./src",

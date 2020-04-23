@@ -1,6 +1,14 @@
 import SvgHandler from './drawSVG';
 
+
 export default class Bezier {
+  /**
+   *This function will add all necessary fileds to class inctance
+   *and add event handlers
+   * @param {number[]} p0 this is first point coordinates
+   * @param {number[]} p1 this is second point coordinates (which is not on the line)
+   * @param {number[]} p2 this is third point coordinates
+   */
   constructor(p0, p1, p2) {
     this.p0 = p0;
     this.p1 = p1;
@@ -38,6 +46,14 @@ export default class Bezier {
     });
   }
 
+  /**
+   * This function calculates coordinates of the point on the line
+   * which separates line with specific ration
+   * @param {number[]} p1 first point coordinates
+   * @param {number[]} p2 second point coordinates
+   * @param {number} rate ratio
+   * @returns {nummber[]} point coordinates
+   */
   static getPointOnLine(p1, p2, rate) {
     const x1 = p1[0];
     const x2 = p2[0];
@@ -49,6 +65,14 @@ export default class Bezier {
     return [x, y];
   }
 
+  /**
+   * This function draws Bezier curve based with 3 points and step
+   * step determines how mach straight lines is in curve
+   * @param {number[]} p0 first point coordinates
+   * @param {number[]} p1 second point coordinates
+   * @param {number[]} p2 third point coordinates
+   * @param {number} step step
+   */
   bezierCycle(p0, p1, p2, step) {
     let rate = 0;
     const points = [];
@@ -66,6 +90,9 @@ export default class Bezier {
     this.svgHandler.drawPolyline(points);
   }
 
+  /**
+   * This function draws Bezier curve along with some secondary primitives
+   */
   draw() {
     const startPoint = this.svgHandler.drawMainPoint(this.p0);
     const endPoint = this.svgHandler.drawMainPoint(this.p2);
