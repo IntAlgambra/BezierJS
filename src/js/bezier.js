@@ -5,19 +5,18 @@ export default class Bezier {
   /**
    *This function will add all necessary fileds to class inctance
    *and add event handlers
-   * @param {number[]} p0 this is first point coordinates
-   * @param {number[]} p1 this is second point coordinates (which is not on the line)
-   * @param {number[]} p2 this is third point coordinates
    */
-  constructor(p0, p1, p2) {
-    this.p0 = p0;
-    this.p1 = p1;
-    this.p2 = p2;
+  constructor() {
     this.startPointMoving = false;
     this.middlePointMoving = false;
     this.endPointMoving = false;
     this.svgHandler = new SvgHandler();
-    const { x, y } = this.svgHandler.field.node.getBoundingClientRect();
+    const {
+      x, y, height, width,
+    } = this.svgHandler.field.node.getBoundingClientRect();
+    this.p0 = [0.1 * width, 0.9 * height];
+    this.p1 = [0.3 * width, 0.1 * height];
+    this.p2 = [0.9 * width, 0.9 * height];
     this.svgHandlerX = x;
     this.svgHandlerY = y;
     this.svgHandler.field.mousemove((e) => {
@@ -44,6 +43,7 @@ export default class Bezier {
       this.middlePointMoving = false;
       this.endPointMoving = false;
     });
+    this.draw();
   }
 
   /**
